@@ -3,8 +3,7 @@
 
 #include <sys/types.h>
 
-struct ieee80211_header
-{
+struct ieee80211_header {
     u_short frame_control;
     u_short frame_duration;
     u_char recipient[6];
@@ -14,8 +13,7 @@ struct ieee80211_header
     u_char address4[6];
 };
 
-struct ieee80211_radiotap_header
-{
+struct ieee80211_radiotap_header {
     u_char it_version;
     u_char it_pad;
     u_char it_len[2];

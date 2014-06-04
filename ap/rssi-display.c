@@ -5,57 +5,47 @@
 
 volatile sig_atomic_t got_sigint;
 Element * rssi_list;
-//sempahore is used to control access to rssi_list between pcap_threads and  http server
+/* Semaphore dealing with multiaccess from pcap_threads and the http server on
+ * the rssi_list.
+ */
 sem_t synchro;
 pthread_t pcap_thread_wlan0, pcap_thread_wlan1;
 int * pthread_wlan0_ret;
 int * pthread_wlan1_ret;
-int microhttpd_ret;
 
-//catch signla interruption (^C)
-void catch_signal(int sig) {
-    printf("\nInterruption Signal Received.\n");
+/* Callback function when a SIGNAL is raised.
+ *
+ * Input: SIGNAL id.
+ * Output: None.
+ */
+void sig_callback(int sig) {
+    perror("[@] Interruption signal received.");
     exit(-1);
 }
 
-
 int main (int argc, char *argv[]) {
-    signal(SIGTERM, catch_signal);
-    signal(SIGINT, catch_signal);
+    int err = 0;
 
-    //initialization of the semaphore
-    //..&synchro : & sem_t
-    //..3 : number of simultaneous access to this sem_t
-    //..0 : initial value
+    /* Custom signal callbacks. */
+    signal(SIGTERM, sig_callback);
+    signal(SIGINT, sig_callback);
+
+    /* Initialization of the semaphore. */
     sem_init(&synchro, 3, 0);
     sem_post(&synchro);
 
-    /*TEST PART*/
-    //build rssi_list
-    /*
-    u_char mac1[6];
-    string_to_mac("11:11:11:11:11:11", mac1);
-    add_element(&rssi_list, mac1);
-    add_value(&rssi_list->measurements, 10);
-    add_value(&rssi_list->measurements, 20);
-    add_value(&rssi_list->measurements, 30);
-    */
-    /*END TEST PART*/
+    /* Start sniffing on the 'wlan0-1' interface of the AP. */
+    printf("[+] Start sniffing on WLAN0-1.\n");
+    pthread_create(&pcap_thread_wlan0, NULL, pcap_function, (void *)"wlan0-1");
 
-    //create and start threads to sniff wlan0 and wlan1
-    printf("creation of the pcap thread\n");
-    pthread_create ( &pcap_thread_wlan0, NULL, pcap_function, (void *) "wlan0-1" );
-    //	pthread_create ( &pcap_thread_wlan1, NULL, pcap_function, (void *) "wlan1-0" );
-    //run microhttp daemon
-    printf("run microhttp daemon\n");
-    microhttpd_ret = microhttp_function();
+    /* Start the MicroHTTP daemon. */
+    printf("[+] Start MicroHTTP daemon.\n");
+    err = start_microhttpd();
+    if (err)
+        perror("[@] Error: Creation of the MicroHTTP deamon failed!");
 
-    if(microhttpd_ret == 1) printf("E : Error with microhttpd daemon\n");
-
-
-    //wait for thread to be terminated
+    /* Force the main to wait for the sniffing to be done before continuing. */
     pthread_join ( pcap_thread_wlan0, (void**)&pthread_wlan0_ret);
-    // pthread_join ( pcap_thread_wlan1, (void**)&pthread_wlan1_ret);
 
     return 0;
 }

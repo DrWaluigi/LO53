@@ -10,14 +10,14 @@
 
 #define AP_MAC  "08:00:27:07:57:21"
 
-int microhttp_function(void);
-int answer_to_connection (void *cls,
-                          struct MHD_Connection *connection,
-                          const char *url,
-                          const char *method,
-                          const char *version,
-                          const char *upload_data,
-                          size_t *upload_data_size,
-                          void **con_cls);
+int start_microhttpd(void);
+int connection_callback(void *cls,
+                        struct MHD_Connection *connection,
+                        const char *url,
+                        const char *method,
+                        const char *version,
+                        const char *upload_data,
+                        size_t *upload_data_size,
+                        void **con_cls);
 
 #endif

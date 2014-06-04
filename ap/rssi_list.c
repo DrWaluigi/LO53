@@ -437,7 +437,7 @@ char * build_element(Element * e, char * buf) {
     double sum = 0.0;
     double mean_value = 0.0;
     int number_samples = 0;
-    char mac[17]; 
+    char mac[17];
     mac_to_string(e->mac_addr, mac);
     //compute the mean value
     Rssi_sample * pTmp = e->measurements.head;
