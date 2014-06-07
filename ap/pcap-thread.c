@@ -6,7 +6,6 @@
 #include <signal.h>
 #include <pthread.h>
 
-
 extern volatile sig_atomic_t got_sigint;
 extern Element * rssi_list;
 extern sem_t synchro;
@@ -25,14 +24,14 @@ void *pcap_function(void *arg) {
     char rssi;
     Element * dev_info;
 
-    // Open pcap handler to sniff traffic
+    /* Open a pcap handler to sniff traffic on the interface. */
     handle = pcap_open_live(iface, BUFSIZ, 1, 1000, errbuf);
     if (handle == NULL) {
-        printf("Could not open pcap on %s\n", iface);
-        pthread_exit((void *) -1);
+        printf("[@] Could not open pcap on %s", iface);
+        pthread_exit((void *)-1);
     }
 
-    while (got_sigint == 0) {
+    while (!got_sigint) {
         packet = pcap_next(handle, &header);
         if (!packet)
             continue;
@@ -52,14 +51,11 @@ void *pcap_function(void *arg) {
           rssi = *((char *) rtap_head + offset) - 0x100;
           printf("%d bytes -- %02X:%02X:%02X:%02X:%02X:%02X -- RSSI: %d dBm\n",
                  len, mac[0], mac[1], mac[2], mac[3], mac[4], mac[5], (int) rssi);
-          // We got some message issued by a terminal (FromDS=0,ToDS=1)
-          //printf("wait for sem-t\n");
           sem_wait(&synchro);
           if ((dev_info = find_mac(rssi_list, mac)) == NULL)
             dev_info = add_element(&rssi_list, mac);
           clear_outdated_values(&dev_info->measurements);
           add_value(&dev_info->measurements, (int) rssi);
-          //printf("post sem_t\n");
           sem_post(&synchro);
         }
     }

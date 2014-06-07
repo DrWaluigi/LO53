@@ -136,7 +136,7 @@ void clear_empty_macs(Element ** list);
  * \param e the element whose data is required.
  * \param buf the string buffer to store the json fragment, returned by the function.
  */
-char * build_element(Element * e, char * buf);
+char *build_element(Element *el, char *dest, unsigned int n);
 
 /*!
  * \brief build_buffer builds the full json sentence based on the positioning server request parameters.
@@ -147,10 +147,10 @@ char * build_element(Element * e, char * buf);
  * \param macs_requested the list of MAC addresses requested by the server, binary format. Its length equals 6*nb_macs.
  * \param nb_macs the number of mac requested.
  */
-char * build_buffer(Element * list,
-                    char * buffer,
-                    char * my_name,
-                    u_char * macs_requested,
+char *build_buffer(Element *list,
+                    char *buffer,
+                    char *my_name,
+                    u_char *requested_macs,
                     unsigned short nb_macs);
 
 /*!
@@ -159,6 +159,6 @@ char * build_buffer(Element * list,
  * \param list the devices list.
  * \param my_name the human readable MAC of the access point.
  */
-char * build_buffer_full(Element * list, char * buffer, char * my_name);
+char * build_buffer_full(Element *list, char *buffer, char *my_name);
 
 #endif

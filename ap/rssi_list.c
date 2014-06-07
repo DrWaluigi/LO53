@@ -422,79 +422,95 @@ void clear_empty_macs(Element ** list) {
 /********************** COMMUNICATION FUNCTION **********************/
 /******************************************************
 *                     build_element                   *
-* input :                                             *
-* 		-e : pointer to the element to build the rssi *
-*		http part from                                *
-* 		-buff : pointer to the buffer to fill         *
-* output :                                            *
-*		-pointer to the buffer filled                 *
-* desc :                                              *
-*		This function compute the mean value of rssi  *
+* input:                                              *
+*       -el: pointer to the element to build the rssi *
+*            http part from                           *
+*       -dest: pointer to the buffer to fill          *
+*       -n: size of the buffer dest                   *
+* output:                                             *
+*       -pointer to the buffer filled                 *
+* desc:                                               *
+*       This function compute the mean value of rssi  *
 *       for the element and build the frame into buff *
 *                                                     *
 *******************************************************/
-char * build_element(Element * e, char * buf) {
+char *build_element(Element *el, char *dest, unsigned int n) {
+    int nb_samples = 0;
     double sum = 0.0;
     double mean_value = 0.0;
-    int number_samples = 0;
-    char mac[17];
-    mac_to_string(e->mac_addr, mac);
-    //compute the mean value
-    Rssi_sample * pTmp = e->measurements.head;
-    while (pTmp != NULL) {//for each sample of the device
-        ++number_samples;
-        sum += pTmp->rssi_mW;
-        pTmp = pTmp->next;
+    char mac[17] = {0};
+    Rssi_sample *current = NULL;
+
+    mac_to_string(el->mac_addr, mac);
+    current = el->measurements.head;
+
+    if (dest == NULL)
+        return dest;
+
+    /* Compute the mean value of all RSSI. */
+    while (current != NULL) {
+        ++nb_samples;
+        sum += current->rssi_mW;
+        current = current->next;
     }
-    mean_value = sum / number_samples;
-    if(number_samples > 0)
-        sprintf(buf,"{\"%s\":\"%.2f\",\"samples\":\"%d\"}", mac, mean_value, number_samples);
 
-    return buf;
+    mean_value = sum / nb_samples;
+    if(nb_samples > 0)
+        snprintf(dest, n, "{\"%s\":\"%.2f\",\"samples\":\"%d\"}", mac, mean_value, nb_samples);
+
+    return dest;
 }
-
 
 /******************************************************
 *                     build_buffer                    *
-* input :                                             *
-* 		-list : pointer to the first element to build *
-*		http part from                                *
-* 		-buffer : pointer to the buffer to fill       *
-* 		-my_name : human readable mac of the AP       *
-* 		-nb_macs : number of macs requested in http   *
-* 		GET request                                   *
-* 		-macs_requested : array of nb_macs * 6 byte   *
-* 		containing the byte macs requested by http    *
-* 		request.                                      *
-* output :                                            *
-*		-pointer to the buffer filled                 *
-* desc :                                              *
-*		This function build the response buffer to    *
+* input:                                              *
+*       -list: pointer to the first element to build  *
+*              http part from                         *
+*       -buffer: pointer to the buffer to fill        *
+*       -my_name: human readable mac of the AP        *
+*       -nb_macs: number of macs requested in http    *
+*                 GET request                         *
+*       -requested_macs: array of nb_macs * 6 byte    *
+*                        containing the byte macs     *
+*                        requested by http request.   *
+* output:                                             *
+*       -pointer to the buffer filled                 *
+* desc:                                               *
+*       This function build the response buffer to    *
 *       send back as a response to an http GET request*
-*       in the form :                                 *
+*       in the form:                                  *
 *  {"ap":"ap:ap:ap:ap:ap:ap", "rssi":["{1},{2},...]}  *
 *   with each sample of rssi in the form :            *
 *       {"XX:XX:XX:XX:XX:XX":"1", "samples":"2"}      *
-*       - 1 : rssi mean value                         *
-*       - 2 : number of samples used for mean value   *
+*       - 1: rssi mean value                          *
+*       - 2: number of samples used for mean value    *
 *                                                     *
 *******************************************************/
-char * build_buffer(Element * list, char * buffer, char * my_name, u_char * macs_requested, unsigned short nb_macs) {
-    int i =0, j=0;
-    char * tmp =(char*) malloc(sizeof(char)*248);
-    sprintf(buffer, "{\"ap\":\"%s\", \"rssi\":[", my_name);
-    //get first element
-    Element * TmpEl = NULL;
-    u_char mac_requested_i[6];
-    for (i = 0; i < nb_macs; ++i) {
-        for (j = 0; j < 6; j++)
-            mac_requested_i[j] = macs_requested[i+j];
-        TmpEl = find_mac( list, mac_requested_i);
-        //if we found the element
-        if (TmpEl != NULL)
-            strcat(buffer, build_element(TmpEl, tmp));
+char *build_buffer(Element *list, char *buffer, char *my_name, u_char *requested_macs, unsigned short nb_macs) {
+    int i = 0;
+    int j = 0;
+    int written = 0;
+    char *rssi_resp = NULL;
+    Element * el = NULL;
+    u_char looking_mac[6] = {0};
+
+    rssi_resp = (char *)calloc(248, sizeof(char));
+    if (rssi_resp == NULL) {
+        perror("[@] Allocation of the buffer failed.");
+        return NULL;
     }
-    strcat(buffer, "]}");
+
+    written = snprintf(buffer, strlen(buffer), "{\"ap\":\"%s\", \"rssi\":[", my_name);
+    for (i = 0; i < nb_macs; ++i) {
+        /* Build the MAC address. */
+        for (j = 0; j < 6; ++j)
+            looking_mac[j] = requested_macs[i + j];
+
+        el = find_mac( list, looking_mac);
+        if (el != NULL)
+            strncat(buffer, build_element(el, rssi_resp, 248), strlen(buffer) - written);
+    }
+    strncat(buffer, "]}", strlen(buffer) - written - sizeof(el));
     return buffer;
 }
 
