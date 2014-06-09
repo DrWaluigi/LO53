@@ -1,7 +1,7 @@
-#include "rssi_display.h"
-#include "rssi_list.h"
-#include "pcap_thread.h"
-#include "http_server.h"
+#include <main.h>
+#include <rssi_list.h>
+#include <pcap_thread.h>
+#include <http_daemon.h>
 
 volatile sig_atomic_t got_sigint;
 Element * rssi_list;

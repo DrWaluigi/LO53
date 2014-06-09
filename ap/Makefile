@@ -1,8 +1,7 @@
 PREFIX=./staging_dir
 GCC=$(PREFIX)/toolchain/bin/mips-openwrt-linux-gcc
 LD=$(PREFIX)/toolchain/bin/mips-openwrt-linux-ld
-ALLFLAGS=-Wall -O2 -I$(PREFIX)/toolchain/include/ -I$(PREFIX)/target/usr/include/ -L$(PREFIX)/toolchain/lib/ -L$(PREFIX)/target/usr/lib/ -lpcap -lm -lcurl -lssl -lz -lcrypto -pthread
-GCCFLAGS=-Wall -O2 -I$(PREFIX)/toolchain/include/ -I$(PREFIX)/target/usr/include/
+GCCFLAGS=-Wall -O2 -I. -I$(PREFIX)/toolchain/include/ -I$(PREFIX)/target/usr/include/
 LDFLAGS=-L$(PREFIX)/toolchain/lib/ -L$(PREFIX)/target/usr/lib/ -lpcap -lm -lcurl -lpolarssl -lz -lcrypto -pthread -lmicrohttpd
 
 TARGET=ap_daemon.bin

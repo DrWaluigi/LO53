@@ -1,9 +1,8 @@
-#include "http_server.h"
-#include "rssi_list.h"
-#include "rssi_display.h"
 #include <semaphore.h>
 #include <signal.h>
 #include <pthread.h>
+#include <http_daemon.h>
+#include <rssi_list.h>
 
 extern volatile sig_atomic_t got_sigint;
 extern Element * rssi_list;

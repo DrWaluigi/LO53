@@ -1,10 +1,9 @@
-#include "pcap_thread.h"
-#include "rssi_list.h"
-#include "rssi_display.h"
 #include <pcap.h>
 #include <semaphore.h>
 #include <signal.h>
 #include <pthread.h>
+#include <pcap_thread.h>
+#include <rssi_list.h>
 
 extern volatile sig_atomic_t got_sigint;
 extern Element * rssi_list;
