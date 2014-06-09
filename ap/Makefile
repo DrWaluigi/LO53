@@ -15,7 +15,7 @@ all: $(TARGET)
 $(TARGET): $(OBJ)
 	$(GCC) $(LDFLAGS) -o $@ $^
 
-%.o: %.c %.h
+%.o: %.c
 	$(GCC) $(GCCFLAGS) -o $@ -c $<
 
 clean:
