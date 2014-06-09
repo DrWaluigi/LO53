@@ -1,6 +1,6 @@
-#include "http-server.h"
+#include "http_server.h"
 #include "rssi_list.h"
-#include "rssi-display.h"
+#include "rssi_display.h"
 #include <semaphore.h>
 #include <signal.h>
 #include <pthread.h>
@@ -20,7 +20,7 @@ int start_microhttpd(void) {
     daemon = MHD_start_daemon (MHD_USE_SELECT_INTERNALLY, PORT, NULL, NULL, &connection_callback, NULL, MHD_OPTION_END);
 
     /* The deamon could not be created. */
-    if (!deamon) {
+    if (!daemon) {
         perror("[@] MicroHTTP daemon: creation error.");
         return -1;
     }
@@ -47,7 +47,7 @@ int connection_callback(void *cls,
                         void **con_cls) {
     int err = 0;
     const char *mac = NULL;
-    const char *frame = NULL;
+    char *frame = NULL;
     struct MHD_Response *response = NULL;
     u_char byte_mac[6] = {0};
 

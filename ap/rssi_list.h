@@ -1,7 +1,7 @@
 #ifndef _RSSI_LIST_
 #define _RSSI_LIST_
 
-#include "rssi-display.h"
+#include "rssi_display.h"
 #include <arpa/inet.h>
 #include <sys/time.h>
 

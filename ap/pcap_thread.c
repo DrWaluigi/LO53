@@ -1,6 +1,6 @@
-#include "pcap-thread.h"
+#include "pcap_thread.h"
 #include "rssi_list.h"
-#include "rssi-display.h"
+#include "rssi_display.h"
 #include <pcap.h>
 #include <semaphore.h>
 #include <signal.h>
