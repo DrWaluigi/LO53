@@ -146,12 +146,14 @@ char *build_element(Element *el, char *dest, unsigned int n);
  * \param my_name the human readable MAC of the access point.
  * \param macs_requested the list of MAC addresses requested by the server, binary format. Its length equals 6*nb_macs.
  * \param nb_macs the number of mac requested.
+ * \param n size of the buffer.
  */
 char *build_buffer(Element *list,
                     char *buffer,
                     char *my_name,
                     u_char *requested_macs,
-                    unsigned short nb_macs);
+                    unsigned short nb_macs,
+                    unsigned int n);
 
 /*!
  * \brief build_buffer_full generated the json response for all the device list content.

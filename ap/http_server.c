@@ -59,10 +59,9 @@ int connection_callback(void *cls,
     /* Convert the mac string to an array of byte. */
     string_to_mac(mac, byte_mac);
 
-    /* TODO: Check that a frame never overflow 512 bytes. */
     frame = (char*) calloc(sizeof(char), 512);
     printf("[+] MicroHTTP daemon: creation of the buffer.\n");
-    build_buffer(rssi_list, frame, AP_MAC, byte_mac, 1);
+    build_buffer(rssi_list, frame, AP_MAC, byte_mac, 1, 512);
 
     printf("[+] MicroHTTp daemon: creation of the response.\n");
     response = MHD_create_response_from_buffer(strlen(frame), (void*)frame, MHD_RESPMEM_PERSISTENT);

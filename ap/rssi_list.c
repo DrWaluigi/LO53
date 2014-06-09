@@ -486,7 +486,7 @@ char *build_element(Element *el, char *dest, unsigned int n) {
 *       - 2: number of samples used for mean value    *
 *                                                     *
 *******************************************************/
-char *build_buffer(Element *list, char *buffer, char *my_name, u_char *requested_macs, unsigned short nb_macs) {
+char *build_buffer(Element *list, char *buffer, char *my_name, u_char *requested_macs, unsigned short nb_macs, unsigned int n) {
     int i = 0;
     int j = 0;
     int written = 0;
@@ -500,7 +500,7 @@ char *build_buffer(Element *list, char *buffer, char *my_name, u_char *requested
         return NULL;
     }
 
-    written = snprintf(buffer, strlen(buffer), "{\"ap\":\"%s\", \"rssi\":[", my_name);
+    written = snprintf(buffer, n, "{\"ap\":\"%s\", \"rssi\":[", my_name);
     for (i = 0; i < nb_macs; ++i) {
         /* Build the MAC address. */
         for (j = 0; j < 6; ++j)
@@ -508,9 +508,9 @@ char *build_buffer(Element *list, char *buffer, char *my_name, u_char *requested
 
         el = find_mac( list, looking_mac);
         if (el != NULL)
-            strncat(buffer, build_element(el, rssi_resp, 248), strlen(buffer) - written);
+            strncat(buffer, build_element(el, rssi_resp, 248), n - written);
     }
-    strncat(buffer, "]}", strlen(buffer) - written - sizeof(el));
+    strncat(buffer, "]}", n - written - sizeof(el));
     return buffer;
 }
 
