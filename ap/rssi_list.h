@@ -157,12 +157,4 @@ char *build_buffer(Element *list,
                     unsigned short nb_macs,
                     unsigned int n);
 
-/*!
- * \brief build_buffer_full generated the json response for all the device list content.
- * \return the json response.
- * \param list the devices list.
- * \param my_name the human readable MAC of the access point.
- */
-char * build_buffer_full(Element *list, char *buffer, char *my_name);
-
 #endif

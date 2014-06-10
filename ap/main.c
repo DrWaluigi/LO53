@@ -13,11 +13,16 @@ pthread_t pcap_thread_wlan0, pcap_thread_wlan1;
 int * pthread_wlan0_ret;
 int * pthread_wlan1_ret;
 
-/* Callback function when a SIGNAL is raised.
- *
- * Input: SIGNAL id.
- * Output: None.
- */
+/******************************************************
+*                   sig_callback                      *
+* input:                                              *
+*       -id the ID of the emitted signal.             *
+* output:                                             *
+*       no output.                                    *
+* desc:                                               *
+*       Callback function when a SIGNAL is raised.    *
+*                                                     *
+*******************************************************/
 void sig_callback(int sig) {
     perror("[@] Interruption signal received.");
     exit(-1);

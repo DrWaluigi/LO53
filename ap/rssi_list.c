@@ -494,6 +494,8 @@ char *build_buffer(Element *list, char *buffer, char *my_name, u_char *requested
     Element * el = NULL;
     u_char looking_mac[6] = {0};
 
+    /* TODO: Dynamically adapt the frame size according to the output.
+     * Hope 248 will not overflow... */
     rssi_resp = (char *)calloc(248, sizeof(char));
     if (rssi_resp == NULL) {
         perror("[@] Allocation of the buffer failed.");

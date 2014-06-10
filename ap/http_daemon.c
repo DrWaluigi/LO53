@@ -8,11 +8,19 @@ extern volatile sig_atomic_t got_sigint;
 extern Element * rssi_list;
 extern sem_t synchro;
 
-/* Starts the MicroHTTP deamon.
- *
- * Input: None.
- * Output: 0 if success, -1 otherwise.
- */
+/******************************************************
+*                 connection_callback                 *
+* input:                                              *
+*       no input.                                     *
+* output:                                             *
+*       - 0 if the daemon has been successfuly        *
+*         created.                                    *
+*       - 1 if an error occured when creating the     *
+*         daemon.                                     *
+* desc:                                               *
+*       Starts the MicroHTTP daemon.                  *
+*                                                     *
+*******************************************************/
 int start_microhttpd(void) {
     struct MHD_Daemon *daemon;
     printf("[+] MicroHTTP daemon: creation.\n");
@@ -33,9 +41,14 @@ int start_microhttpd(void) {
     return 0;
 }
 
-/* Callback function which is triggered when a new connection is created in the
- * MicroHTTP daemon.
- */
+/******************************************************
+*                 connection_callback                 *
+* desc:                                               *
+*       This is the callback function that is         *
+*       triggered when a new connection is created in *
+*       the MicroHTTP daemon.                         *
+*                                                     *
+*******************************************************/
 int connection_callback(void *cls,
                         struct MHD_Connection *connection,
                         const char *url,
@@ -58,6 +71,8 @@ int connection_callback(void *cls,
     /* Convert the mac string to an array of byte. */
     string_to_mac(mac, byte_mac);
 
+    /* TODO: Dynamically adapt the frame size according to the output.
+     * Hope 512 will not overflow... */
     frame = (char*) calloc(sizeof(char), 512);
     printf("[+] MicroHTTP daemon: creation of the buffer.\n");
     build_buffer(rssi_list, frame, AP_MAC, byte_mac, 1, 512);

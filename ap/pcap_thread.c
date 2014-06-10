@@ -9,6 +9,19 @@ extern volatile sig_atomic_t got_sigint;
 extern Element * rssi_list;
 extern sem_t synchro;
 
+/******************************************************
+*                    pcap_function                    *
+* input:                                              *
+*       -name of the interface.                       *
+* output:                                             *
+*       no output.                                    *
+* desc:                                               *
+*       This function will listen on an interface and *
+*       sniff its packets. If the packet is a WiFi    *
+*       one, it will extract the RSSI value and add   *
+*       it to the rssi_list.                          *
+*                                                     *
+*******************************************************/
 void *pcap_function(void *arg) {
     char *iface = (char *) arg;
     char errbuf[PCAP_ERRBUF_SIZE];

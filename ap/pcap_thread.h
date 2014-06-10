@@ -20,6 +20,11 @@ struct ieee80211_radiotap_header {
     u_char it_present[4];
 };
 
+/*!
+ * \brief pcap_function function that sniff an interface in order to extract
+ *        the rssi values from the connected devices.
+ * \param arg name of the interface to sniff.
+ */
 void *pcap_function(void *arg);
 
 #endif /* _PCAP_THREAD_ */
