@@ -46,7 +46,7 @@ if( window.location.search.match( /print-pdf/gi ) ) {
         <section data-markdown>
             <script type="text/template"> 
 
-# LO53 Project
+## LO53 Wi-Fi Positioning System
 
 Thomas GAGNERET
 
@@ -65,6 +65,65 @@ Tao SAUVAGE
 - Access Points
 - Positioning server
 - Android
+
+            </script>
+        </section>
+
+        <section data-markdown>
+            <script type="text/template">
+
+## Access Points
+
++ A chained list
++ Passive sniffer
++ HTTP daemon
+
+            </script>
+        </section>
+
+        <section data-markdown>
+            <script type="text/template">
+
+### Passive Sniffer
+
+
++ Use pcap library
+    1. Sniff every wireless packets
+    2. Extract the RSSI values
+    3. Append them to the list
+
+            </script>
+        </section>
+
+        <section data-markdown>
+            <script type="text/template">
+
+### Scenario 1-2
+
+<img src="pictures/mobile_with_aps.png" alt="User Equipments in between APs" style="height: 300px;"/>
+
+            </script>
+        </section>
+
+        <section data-markdown>
+            <script type="text/template">
+
+### Scenario 2-2
+
+<img src="pictures/focus_mobile_with_aps.png" alt="User Equipments in between APs" style="height: 300px;"/>
+
+            </script>
+        </section>
+
+        <section data-markdown>
+            <script type="text/template">
+
+### HTTP Daemon
+
++ Use MicroHTTP library
+    1. Set up a daemon on start up
+    2. Waits for requests from the Positioning server
+    3. Send the RSSI value for the requested MAC & their mean value
 
             </script>
         </section>
