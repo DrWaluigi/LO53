@@ -1,0 +1,145 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+"http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+
+<svg width="473" height="277" viewBox="0 0 473 277"
+xmlns="http://www.w3.org/2000/svg"
+xmlns:link="http://www.w3.org/1999/xlink">
+
+<desc>Généré par Mocodo 1.6.1 le Sun, 15 Jun 2014 16:25:42</desc>
+
+<rect x="0" y="0" width="473" height="277" fill="none" stroke="none" stroke-width="0"/>
+
+<!-- Association is linked 2 -->
+<line x1="36" y1="226" x2="124" y2="226" stroke="#000000" stroke-width="1"/>
+<text x="68" y="242.05" fill="#000000" font-family="Liberation Serif" font-size="12">1,1</text>
+<line x1="225" y1="226" x2="124" y2="226" stroke="#000000" stroke-width="1"/>
+<text x="162" y="242.05" fill="#000000" font-family="Liberation Serif" font-size="12">0,N</text>
+<path d="M 174.5 226.0 L 162.5 232.0 L 166.5 226.0 L 162.5 220.0 Z" fill="#000000" stroke-width="0"/>
+<g id="association-is linked 2">
+	<path d="M 143 201 a 14 14 90 0 1 14 14 V 226 h -66 V 215 a 14 14 90 0 1 14 -14" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="0"/>
+	<path d="M 157 226 v 11 a 14 14 90 0 1 -14 14 H 105 a 14 14 90 0 1 -14 -14 V 226 H 66" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="0"/>
+	<rect x="91" y="201" width="66" height="50" fill="None" rx="14" stroke="#000000" stroke-width="1.5"/>
+	<line x1="91" y1="226" x2="157" y2="226" stroke="#000000" stroke-width="1"/>
+	<text x="98" y="218.75" fill="#000000" font-family="Liberation Serif" font-size="14">is linked </text>
+</g>
+
+<!-- Association is located -->
+<line x1="36" y1="226" x2="124" y2="85" stroke="#000000" stroke-width="1"/>
+<text x="73.4539007092" y="185.05" fill="#000000" font-family="Liberation Serif" font-size="12">1,1</text>
+<line x1="225" y1="85" x2="124" y2="85" stroke="#000000" stroke-width="1"/>
+<text x="172" y="101.05" fill="#000000" font-family="Liberation Serif" font-size="12">0,N</text>
+<path d="M 174.5 85.0 L 162.5 91.0 L 166.5 85.0 L 162.5 79.0 Z" fill="#000000" stroke-width="0"/>
+<g id="association-is located">
+	<path d="M 144 60 a 14 14 90 0 1 14 14 V 85 h -68 V 74 a 14 14 90 0 1 14 -14" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="0"/>
+	<path d="M 158 85 v 11 a 14 14 90 0 1 -14 14 H 104 a 14 14 90 0 1 -14 -14 V 85 H 68" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="0"/>
+	<rect x="90" y="60" width="68" height="50" fill="None" rx="14" stroke="#000000" stroke-width="1.5"/>
+	<line x1="90" y1="85" x2="158" y2="85" stroke="#000000" stroke-width="1"/>
+	<text x="97" y="77.75" fill="#000000" font-family="Liberation Serif" font-size="14">is located</text>
+</g>
+
+<!-- Association is linked -->
+<line x1="419" y1="226" x2="324" y2="226" stroke="#000000" stroke-width="1"/>
+<text x="360" y="242.05" fill="#000000" font-family="Liberation Serif" font-size="12">1,1</text>
+<line x1="225" y1="226" x2="324" y2="226" stroke="#000000" stroke-width="1"/>
+<text x="270" y="242.05" fill="#000000" font-family="Liberation Serif" font-size="12">0,N</text>
+<path d="M 274.5 226.0 L 286.5 220.0 L 282.5 226.0 L 286.5 232.0 Z" fill="#000000" stroke-width="0"/>
+<g id="association-is linked">
+	<path d="M 341 201 a 14 14 90 0 1 14 14 V 226 h -62 V 215 a 14 14 90 0 1 14 -14" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="0"/>
+	<path d="M 355 226 v 11 a 14 14 90 0 1 -14 14 H 307 a 14 14 90 0 1 -14 -14 V 226 H 62" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="0"/>
+	<rect x="293" y="201" width="62" height="50" fill="None" rx="14" stroke="#000000" stroke-width="1.5"/>
+	<line x1="293" y1="226" x2="355" y2="226" stroke="#000000" stroke-width="1"/>
+	<text x="300" y="218.75" fill="#000000" font-family="Liberation Serif" font-size="14">is linked</text>
+</g>
+
+<!-- Association is on -->
+<line x1="225" y1="85" x2="324" y2="85" stroke="#000000" stroke-width="1"/>
+<text x="260" y="101.05" fill="#000000" font-family="Liberation Serif" font-size="12">1,1</text>
+<line x1="419" y1="85" x2="324" y2="85" stroke="#000000" stroke-width="1"/>
+<text x="351" y="101.05" fill="#000000" font-family="Liberation Serif" font-size="12">0,N</text>
+<path d="M 371.5 85.0 L 359.5 91.0 L 363.5 85.0 L 359.5 79.0 Z" fill="#000000" stroke-width="0"/>
+<g id="association-is on">
+	<path d="M 331 60 a 14 14 90 0 1 14 14 V 85 h -42 V 74 a 14 14 90 0 1 14 -14" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="0"/>
+	<path d="M 345 85 v 11 a 14 14 90 0 1 -14 14 H 317 a 14 14 90 0 1 -14 -14 V 85 H 42" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="0"/>
+	<rect x="303" y="60" width="42" height="50" fill="None" rx="14" stroke="#000000" stroke-width="1.5"/>
+	<line x1="303" y1="85" x2="345" y2="85" stroke="#000000" stroke-width="1"/>
+	<text x="310" y="77.75" fill="#000000" font-family="Liberation Serif" font-size="14">is on</text>
+</g>
+
+<!-- Entity TempRssi -->
+<g id="entity-TempRssi">
+	<g id="frame-TempRssi">
+		<rect x="383" y="184" width="72" height="25" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="0"/>
+		<rect x="383" y="209" width="72" height="59" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="0"/>
+		<rect x="383" y="184" width="72" height="84" fill="None" stroke="#000000" stroke-width="1.5"/>
+		<line x1="383" y1="209" x2="455" y2="209" stroke="#000000" stroke-width="1"/>
+	</g>
+	<text x="390" y="201.75" fill="#000000" font-family="Liberation Serif" font-size="14">TempRssi</text>
+	<text x="388" y="226.75" fill="#000000" font-family="Liberation Serif" font-size="14">id</text>
+	<line x1="388" y1="229.0" x2="399" y2="229.0" stroke="#000000" stroke-width="1"/>
+	<text x="388" y="243.75" fill="#000000" font-family="Liberation Serif" font-size="14">client_mac</text>
+	<text x="388" y="260.75" fill="#000000" font-family="Liberation Serif" font-size="14">avg_value</text>
+</g>
+
+<!-- Entity Maps -->
+<g id="entity-Maps">
+	<g id="frame-Maps">
+		<rect x="374" y="9" width="90" height="25" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="0"/>
+		<rect x="374" y="34" width="90" height="127" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="0"/>
+		<rect x="374" y="9" width="90" height="152" fill="None" stroke="#000000" stroke-width="1.5"/>
+		<line x1="374" y1="34" x2="464" y2="34" stroke="#000000" stroke-width="1"/>
+	</g>
+	<text x="403" y="26.75" fill="#000000" font-family="Liberation Serif" font-size="14">Maps</text>
+	<text x="379" y="51.75" fill="#000000" font-family="Liberation Serif" font-size="14">id</text>
+	<line x1="379" y1="54.0" x2="390" y2="54.0" stroke="#000000" stroke-width="1"/>
+	<text x="379" y="68.75" fill="#000000" font-family="Liberation Serif" font-size="14">description</text>
+	<text x="379" y="85.75" fill="#000000" font-family="Liberation Serif" font-size="14">px_width</text>
+	<text x="379" y="102.75" fill="#000000" font-family="Liberation Serif" font-size="14">pw_height</text>
+	<text x="379" y="119.75" fill="#000000" font-family="Liberation Serif" font-size="14">meters_width</text>
+	<text x="379" y="136.75" fill="#000000" font-family="Liberation Serif" font-size="14">meters_height</text>
+	<text x="379" y="153.75" fill="#000000" font-family="Liberation Serif" font-size="14">content</text>
+</g>
+
+<!-- Entity AccessPoint -->
+<g id="entity-AccessPoint">
+	<g id="frame-AccessPoint">
+		<rect x="185" y="192" width="80" height="25" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="0"/>
+		<rect x="185" y="217" width="80" height="43" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="0"/>
+		<rect x="185" y="192" width="80" height="68" fill="None" stroke="#000000" stroke-width="1.5"/>
+		<line x1="185" y1="217" x2="265" y2="217" stroke="#000000" stroke-width="1"/>
+	</g>
+	<text x="190" y="209.75" fill="#000000" font-family="Liberation Serif" font-size="14">AccessPoint</text>
+	<text x="190" y="234.75" fill="#000000" font-family="Liberation Serif" font-size="14">id</text>
+	<line x1="190" y1="237.0" x2="201" y2="237.0" stroke="#000000" stroke-width="1"/>
+	<text x="190" y="251.75" fill="#000000" font-family="Liberation Serif" font-size="14">mac_addr</text>
+</g>
+
+<!-- Entity Location -->
+<g id="entity-Location">
+	<g id="frame-Location">
+		<rect x="195" y="43" width="60" height="25" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="0"/>
+		<rect x="195" y="68" width="60" height="59" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="0"/>
+		<rect x="195" y="43" width="60" height="84" fill="None" stroke="#000000" stroke-width="1.5"/>
+		<line x1="195" y1="68" x2="255" y2="68" stroke="#000000" stroke-width="1"/>
+	</g>
+	<text x="200" y="60.75" fill="#000000" font-family="Liberation Serif" font-size="14">Location</text>
+	<text x="200" y="85.75" fill="#000000" font-family="Liberation Serif" font-size="14">id</text>
+	<line x1="200" y1="88.0" x2="211" y2="88.0" stroke="#000000" stroke-width="1"/>
+	<text x="200" y="102.75" fill="#000000" font-family="Liberation Serif" font-size="14">x</text>
+	<text x="200" y="119.75" fill="#000000" font-family="Liberation Serif" font-size="14">y</text>
+</g>
+
+<!-- Entity Rssi -->
+<g id="entity-Rssi">
+	<g id="frame-Rssi">
+		<rect x="9" y="192" width="54" height="25" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="0"/>
+		<rect x="9" y="217" width="54" height="43" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="0"/>
+		<rect x="9" y="192" width="54" height="68" fill="None" stroke="#000000" stroke-width="1.5"/>
+		<line x1="9" y1="217" x2="63" y2="217" stroke="#000000" stroke-width="1"/>
+	</g>
+	<text x="24" y="209.75" fill="#000000" font-family="Liberation Serif" font-size="14">Rssi</text>
+	<text x="14" y="234.75" fill="#000000" font-family="Liberation Serif" font-size="14">id</text>
+	<line x1="14" y1="237.0" x2="25" y2="237.0" stroke="#000000" stroke-width="1"/>
+	<text x="14" y="251.75" fill="#000000" font-family="Liberation Serif" font-size="14">avg_val</text>
+</g>
+</svg>

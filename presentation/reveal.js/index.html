@@ -62,8 +62,8 @@ Tao SAUVAGE
 
 ## Summary
 
-- Positioning server
 - Access Points
+- Positioning server
 - Android
 
             </script>
@@ -87,10 +87,84 @@ Tao SAUVAGE
 
 ## Database
 
+PostgreSQL
+
+<img src="pictures/db.svg" alt="Database" style="width: 700px;"/>
 
             </script>
         </section>
 
+        <section data-markdown>
+            <script type="text/template">
+
+## Database
+
+Filling the database
+
+- Manually
+- Maps table : Python script
+
+
+
+
+            </script>
+        </section>
+
+        <section data-markdown>
+            <script type="text/template">
+
+## Communication Servlets/Database
+
+- PostgreSQL connector
+- Data Access Object
+    - Servlet <-> DAO1 <-> Database
+    - Servlet <-> DAO2 <-> XML
+
+            </script>
+        </section>
+
+        <section data-markdown>
+            <script type="text/template">
+
+## Servlets
+
+- Handle requests from mobile devices
+- Retrieve RSSI information from APs
+- Store useful information in database
+
+            </script>
+        </section>
+
+        <section data-markdown>
+            <script type="text/template">
+
+## Servlets
+
+Configuration file :
+```
+# Database
+url = jdbc:postgresql://localhost:5432/lo53_rssi
+user = lo53
+password = lo53
+
+# Access points port
+ap_port = 8080
+
+# Access points timeout (ms)
+ap_timeout = 500
+
+# Minimum number of Access Points needed
+min_ap = 1
+
+# Minimum number of samples sent by the Access Points needed
+min_samples = 1
+
+# Minimum number of temporary RSSI measurements needed
+min_measurements = 1
+```
+
+            </script>
+        </section>
     </div>
 
 </div>
