@@ -92,7 +92,7 @@ part of the ip).
 
 \begin{figure}[h]
   \centering
-  \includegraphics[scale=1]{./Positioning_server/db.pdf}
+  \includegraphics[scale=1]{./positioning_server/db.pdf}
   \caption{Database}
 \end{figure}
 
@@ -108,7 +108,7 @@ this table contains binary data, it is quite difficult to do it manually. So we
 wrote a filling script to do this. This script put maps pictures in the
 database, and get informations about maps from text files like this one :
 
-\verbatiminput{./Positioning_server/pic.txt}
+\verbatiminput{./positioning_server/pic.txt}
 
 The size in pixel of the picture is automatically determined, thank to the PIL
 library. The addition in the database uses the psycopg2 connector.
