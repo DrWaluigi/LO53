@@ -1,0 +1,62 @@
+\documentclass[12pt]{report}%{memoir}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[english]{babel}
+
+\usepackage[a4paper]{geometry}  % Pour indiquer le format de page
+
+% Pour la bibliographie
+\usepackage[backend=biber,style=reading,sorting=nyvt]{biblatex}
+\bibliography{Bibliographie}
+
+\usepackage[style=french]{csquotes}
+
+% Pour les liens
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks,
+    citecolor=black,
+    filecolor=black,
+    linkcolor=black,
+    urlcolor=blue
+}
+
+% Pour que les figures apparaissent sur la bonne page
+\usepackage{float}
+
+\usepackage{verbatim}
+
+% Pour les annexes
+\usepackage[toc,page]{appendix}
+
+\usepackage{graphicx}
+
+\title{\textbf{LO53 Lab report}}
+\author{Tao Sauvage \\ Stéphane Parunakian \\ Thomas Gagneret}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\input{Introduction.tex}
+
+\setcounter{tocdepth}{1}
+\tableofcontents
+
+\input{./Access_point.tex}
+
+\input{./Positioning_server.tex}
+
+\input{./Android.tex}
+
+\input{./Conclusion.tex}
+
+%\nocite{*}
+
+%\printbibliography[heading=bibintoc]
+
+\input{./Licence.tex}
+
+\end{document}

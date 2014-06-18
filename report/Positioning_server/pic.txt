@@ -1,0 +1,4 @@
+[picture]
+description: This is the description for the H_RDC picture
+meters_width: 2.5
+meters_heigt: 3.5
