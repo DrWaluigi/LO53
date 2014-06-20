@@ -1,14 +1,17 @@
 \chapter{Positioning server}
 
+\paragraph{}
 In this chapter, we will speak about the positioning server part of our project. 
 
     \section{Tools and versions}
 
+\paragraph{}
 Before seeing the server itself, lets see the different tools used for its
 creation.
 
         \subsection{Java}
 
+\paragraph{}
 This server is coded in Java 7, the programming language of Oracle. So the
 different servlets must use TomCat 7.
 
@@ -16,6 +19,7 @@ different servlets must use TomCat 7.
 
         \subsection{Simulation scripts}
 
+\paragraph{}
 In order to test the server, without having to setup all the elements of the
 project (Access points, mobile device), three Python scripts have been written:
 
@@ -29,25 +33,30 @@ project (Access points, mobile device), three Python scripts have been written:
 
     \section{Programm}
 
+\paragraph{}
 Now we will look at the server.
 
         \subsection{DAO}
 
+\paragraph{}
 A major element of the server code is the Data Access Object (DAO). It is the
 link between the database and the code. It allows the programm to manipulate
 data as it was objects, without having to care about the database. The DAO
 creates objects from information in the database, and updates information in the
 database from objects.
 
+\paragraph{}
 The major advantage of this concept is the possibility to change the way to
 store data easily. Only the DAO interface needs to be modified in case we want,
 for example, to use a NoSQL database.
 
         \subsection{Calibration}
 
+\paragraph{}
 The Calibration servlet is called by mobile devices to put calibration information
 in the server database.
 
+\paragraph{}
 How the servlet works:
 \begin{enumerate}
     \item A mobile device send a calibration request, with a map id and
@@ -63,9 +72,11 @@ How the servlet works:
 
         \subsection{Localisation}
 
+\paragraph{}
 The Localisation servlet is called by mobile devices who want their
 localisation.
 
+\paragraph{}
 How the servlet works:
 \begin{enumerate}
     \item A mobile device send a localisation request, with no parameters.
@@ -81,10 +92,18 @@ How the servlet works:
         coordinates).
 \end{enumerate}
 
-%        \subsection{Other}
+
+    \subsection{Computation of a location}
+
+\paragraph{}
+The two servlets uses the same function for calculating the RSSI distance. This
+function is used to compute the distance between the new location and all the
+known locations. During a localisation request, the nearest point is calculated
+and returned to the mobile device.
 
     \section{Database}
 
+\paragraph{}
 The database of the server is shared between the servlets. Its structure is
 almost the same as in the subject. There is only one addition: an ``ip'' column
 in the AccessPoints table (it is more reliable than using the id for the last
@@ -98,11 +117,13 @@ part of the ip).
 
         \subsection{Creation script}
 
+\paragraph{}
 In order to create the database, a postgresql script has been created. It
 creates a user ``lo53'' with a password ``lo53'' and a database ``lo53\_rssi''.
 
         \subsection{Filling}
 
+\paragraph{}
 The filing of the database has to be handmade, except for the Maps table. As
 this table contains binary data, it is quite difficult to do it manually. So we
 wrote a filling script to do this. This script put maps pictures in the
@@ -110,5 +131,39 @@ database, and get informations about maps from text files like this one :
 
 \verbatiminput{./positioning_server/pic.txt}
 
+\paragraph{}
 The size in pixel of the picture is automatically determined, thank to the PIL
 library. The addition in the database uses the psycopg2 connector.
+
+    \section{Configuration file}
+
+\paragraph{}
+Some values of the positioning server may need adjustments. These values should
+not be hardcoded, because it is not practical at all. So the servlets share a
+configuration file named \emph{config.properties}. Below is the content of this
+file.
+
+\verbatiminput{./positioning_server/config.properties}
+
+\paragraph{}
+This file already exists, and can be found in the WEB-INF/classes folder of the
+positioning server. Without it, servlets won't be able to work correctly.
+
+\paragraph{}
+Here is the explanation for each value of this file :
+\begin{description}
+    \item[url, user and password] These values are used to configure database
+        information.
+    \item[ap\_port] It is used for the communication between servlets and access
+        points. We assume that all access points use the same port.
+    \item[ap\_timeout] It indicates how long must servlets wait for access points
+        responses during RSSI requests.
+    \item[min\_ap] It represents the minimum number of access points needed in
+        order to make a RSSI request. If there is not enough router, no request
+        will be made.
+    \item[min\_samples] The minimum number of RSSI samples by access point
+        required.
+    \item[min\_measurements] The minimum number of temporary RSSI measurements
+        needed in order to calculate a RSSI distance or validating the RSSI
+        measurements for a location.
+\end{description}
